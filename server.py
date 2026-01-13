@@ -1,12 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from bs4 import BeautifulSoup
 import requests
 from urllib.parse import urlparse
 import re
+import os
 
 app = Flask(__name__)
 CORS(app)  # CORS 문제 해결
+
+@app.route('/')
+def index():
+    """메인 페이지 제공"""
+    return send_file('index.html')
 
 @app.route('/api/extract', methods=['POST'])
 def extract_product():
