@@ -261,51 +261,46 @@
     <script>
         const form = document.getElementById('productForm');
         const resultCard = document.getElementById('resultCard');
+        const submitBtn = form.querySelector('.submit-btn');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const url = document.getElementById('productUrl').value;
 
-            // URL에서 도메인 추출
-            let domain = '';
+            // 로딩 상태 표시
+            submitBtn.textContent = '정보 가져오는 중...';
+            submitBtn.disabled = true;
+
             try {
-                const urlObj = new URL(url);
-                domain = urlObj.hostname.replace('www.', '');
-            } catch (e) {
-                domain = 'Unknown';
+                // 백엔드 API 호출
+                const response = await fetch('http://localhost:5000/api/extract', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || '서버 오류가 발생했습니다');
+                }
+
+                const data = await response.json();
+
+                // 결과 표시
+                displayResult(data);
+
+            } catch (error) {
+                alert('오류: ' + error.message);
+                console.error('Error:', error);
+            } finally {
+                // 버튼 상태 복구
+                submitBtn.textContent = '정보 가져오기';
+                submitBtn.disabled = false;
             }
-
-            // 목업 데이터 생성 (실제로는 서버에서 가져와야 함)
-            const mockData = generateMockData(domain, url);
-
-            // 결과 표시
-            displayResult(mockData);
         });
-
-        function generateMockData(domain, url) {
-            // 도메인별 다른 데이터 생성
-            const sellers = {
-                'coupang.com': '쿠팡',
-                'naver.com': '네이버 쇼핑',
-                'gmarket.co.kr': 'G마켓',
-                '11st.co.kr': '11번가',
-                'amazon.com': 'Amazon',
-                'default': domain
-            };
-
-            const seller = sellers[domain] || sellers['default'];
-
-            return {
-                title: '프리미엄 무선 이어폰 ANC 노이즈캔슬링',
-                price: (Math.floor(Math.random() * 200000) + 50000).toLocaleString() + '원',
-                seller: seller,
-                category: '전자기기 > 이어폰',
-                rating: '⭐ ' + (Math.random() * 2 + 3).toFixed(1) + ' / 5.0',
-                description: '최신 블루투스 5.3 기술이 적용된 프리미엄 무선 이어폰입니다. 강력한 액티브 노이즈 캔슬링(ANC) 기능으로 주변 소음을 효과적으로 차단하며, 최대 30시간의 긴 배터리 사용 시간을 자랑합니다. 인체공학적 디자인으로 장시간 착용해도 편안하며, IPX7 방수 등급으로 운동 시에도 안심하고 사용할 수 있습니다.',
-                url: url
-            };
-        }
 
         function displayResult(data) {
             document.getElementById('productTitle').textContent = data.title;
@@ -315,6 +310,14 @@
             document.getElementById('productRating').textContent = data.rating;
             document.getElementById('productDescription').textContent = data.description;
             document.getElementById('productUrlDisplay').textContent = data.url;
+
+            // 이미지가 있으면 표시
+            const productImage = document.getElementById('productImage');
+            if (data.image) {
+                productImage.innerHTML = `<img src="${data.image}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" alt="상품 이미지">`;
+            } else {
+                productImage.innerHTML = '📦';
+            }
 
             resultCard.classList.add('show');
             resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
