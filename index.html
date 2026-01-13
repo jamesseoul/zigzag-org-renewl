@@ -1,227 +1,46 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>지그재그 서비스 조직: 새로운 챕터</title>
+    <title>링크 버튼 프로토타입</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Chosen Palette: Energetic Yellow & Charcoal */
-        /* Application Structure Plan: A narrative-driven, single-page scroll that follows the leader's speech. The structure is designed to build a story: setting the context (Why we change), presenting the exciting new vision (What we'll become), explaining the new system (How we'll do it), and ending with an inspiring call to action. This structure is more persuasive and emotionally resonant than a simple slide deck. */
-        /* Visualization & Content Choices: The textual content has been expanded to add more context while maintaining a scannable and impactful presentation within the energetic yellow theme. Key concepts are presented in bold, minimalist cards. The structure of Squads, Functions, and Display Ops is a clear, side-by-side comparison. All visuals are created with HTML/CSS and Unicode characters to maintain a clean aesthetic, confirming NO SVG/Mermaid is used. */
-        /* CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. */
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #fefce8; /* yellow-50 */
-            color: #1c1917; /* stone-900 */
-        }
-        .font-serif-like {
-            font-family: 'Gowun Dodum', serif;
-        }
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .nav-link.active {
-            color: #ca8a04; /* yellow-600 */
-            font-weight: 700;
-        }
-        p {
-            line-height: 1.9;
-        }
-        h2 {
-            line-height: 1.5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
+    <div class="container max-w-2xl mx-auto px-6">
+        <div class="bg-white rounded-2xl shadow-2xl p-12">
+            <h1 class="text-4xl font-bold text-gray-800 text-center mb-4">
+                링크 선택
+            </h1>
+            <p class="text-gray-600 text-center mb-12">
+                원하는 사이트를 선택해주세요
+            </p>
 
-    <!-- Header Navigation -->
-    <header id="main-header" class="bg-yellow-50/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-yellow-200/50">
-        <div class="container max-w-screen-2xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-stone-900">새로운 챕터</h1>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#slide-2" class="nav-link text-stone-600 hover:text-yellow-600 transition-colors">우리의 고민</a>
-                <a href="#slide-3" class="nav-link text-stone-600 hover:text-yellow-600 transition-colors">새로운 비전</a>
-                <a href="#slide-4" class="nav-link text-stone-600 hover:text-yellow-600 transition-colors">일하는 방식</a>
-            </nav>
+            <div class="space-y-4">
+                <!-- Naver Button -->
+                <a href="https://naver.com" target="_blank"
+                   class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-6 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center text-xl">
+                    네이버로 이동
+                </a>
+
+                <!-- Google Button -->
+                <a href="https://google.com" target="_blank"
+                   class="block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-6 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center text-xl">
+                    구글로 이동
+                </a>
+
+                <!-- ChatGPT Button -->
+                <a href="https://chat.openai.com" target="_blank"
+                   class="block w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-6 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center text-xl">
+                    ChatGPT로 이동
+                </a>
+            </div>
         </div>
-    </header>
-
-    <main class="pt-16">
-
-        <!-- Slide 1: Opening -->
-        <section id="slide-1" class="min-h-screen flex items-center bg-yellow-100/70">
-            <div class="container mx-auto px-6 text-center">
-                <p class="font-serif-like text-2xl text-stone-500 mb-4"></p>
-                <h2 class="text-4xl md:text-6xl font-bold text-stone-900 mb-6 leading-loose">
-                    지그재그 서비스 조직의<br>새로운 챕터
-                </h2>
-                <p class="text-lg text-stone-700 max-w-2xl mx-auto">
-                    오늘 이 자리는 일하는 방식에 대한 중요한 변화를 공유하고, <br>
-                    우리가 함께 나아갈 새로운 방향에 대해 이야기하기 위해 마련되었습니다.
-                </p>
-            </div>
-        </section>
-
-        <!-- Slide 2: Background -->
-        <section id="slide-2" class="fade-in-section container mx-auto py-24 px-6">
-            <div class="text-center max-w-3xl mx-auto">
-                <p class="font-serif-like text-xl text-stone-500 mb-2">Slide 2</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">우리가 마주했던 솔직한 고민들</h2>
-                <p class="text-md text-stone-600 mb-12">
-                    왜 변화해야 하는지, 솔직한 고민부터 말씀드리고 싶습니다.<br>
-                    지금의 상황은 우리가 성장하며 겪어온 자연스러운 과정이었습니다. <br>
-                    이제는 이 고민들을 바탕으로 한 단계 더 도약할 준비가 되었습니다.
-                </p>
-                <div class="grid md:grid-cols-3 gap-6 text-left">
-                    <div class="bg-white p-6 rounded-lg border border-yellow-200/80">
-                        <h3 class="font-bold text-lg mb-2">수동적 대응</h3>
-                        <p class="text-sm text-stone-600">단기 요청 처리에 에너지가 소모되어, 전략적 문제 해결이 어려웠습니다.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-yellow-200/80">
-                        <h3 class="font-bold text-lg mb-2">목표의 부재</h3>
-                        <p class="text-sm text-stone-600">명확한 기준점이 없어 노력의 임팩트를 측정하고 방향을 잡기 어려웠습니다.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-yellow-200/80">
-                        <h3 class="font-bold text-lg mb-2">펀더멘털 개선 지연</h3>
-                        <p class="text-sm text-stone-600">단기 과제에 집중하면서 제품의 펀더멘털 개선이 후순위로 밀렸습니다.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 3: Vision -->
-        <section id="slide-3" class="fade-in-section bg-stone-800 text-white py-24 px-6">
-            <div class="container mx-auto text-center">
-                <p class="font-serif-like text-xl opacity-80 mb-2">Slide 3</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">비전: 유입과 락인의 강력한 성장 플라이휠</h2>
-                <p class="text-lg opacity-90 max-w-3xl mx-auto mb-12">
-                    요청업무를 넘어 비지니스 문제를 직접 해결하는 조직으로 거듭납니다. <br>
-                    최고의 탐색 경험으로 고객을 묶어두고, 강력한 성장 장치로 신규 고객을 끌어당기는 것.<br>우리가 만들고자 하는 강력한 성장 공식입니다.
-                </p>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
-                    <div class="bg-stone-700/50 p-8 rounded-lg">
-                        <h3 class="text-2xl font-bold text-yellow-300 mb-3">엔진 1: 리빙 인터페이스 (Lock-in)</h3>
-                        <p class="opacity-90">'나보다 나를 더 잘 아는' 압도적인 개인화 경험으로, 고객이 우리 서비스를 떠날 수 없게 만듭니다.</p>
-                    </div>
-                    <div class="bg-stone-700/50 p-8 rounded-lg">
-                        <h3 class="text-2xl font-bold text-yellow-300 mb-3">엔진 2: 정교한 바이럴 장치 (Acquisition)</h3>
-                        <p class="opacity-90">사용자가 기꺼이 참여하고 공유하여, 폭발적인 신규 유입을 만들어냅니다.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Slide 4: New Structure -->
-        <section id="slide-4" class="fade-in-section container mx-auto py-24 px-6">
-            <div class="text-center max-w-4xl mx-auto mb-16">
-                <p class="font-serif-like text-xl text-stone-500 mb-2">Slide 4</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">새로운 일하는 방식: 스쿼드, 펑션, 그리고 전시OPS</h2>
-                 <p class="text-md text-stone-600">
-                    이 비전을 현실로 만들기 위해, 7월 부터 일하는 방식을 새롭게 개편합니다.<br>
-                    이제 '스쿼드'는 명확한 문제를 해결하는데 집중하고,<br>'펑션팀'은 각 분야의 전문성으로 조직 전체의 품질과 효율을 책임지며,<br>
-                    '전시OPS'는 이 둘을 연결하여 전사 전략의 실행력을 높이는 컨트롤 타워 역할을 합니다.
-                </p>
-            </div>
-            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-                 <div class="bg-white p-8 rounded-lg border border-yellow-200/80">
-                    <h3 class="text-2xl font-bold mb-3">🚀 스쿼드: 문제 해결의 중심축</h3>
-                    <p class="text-stone-600">명확한 OKR을 기반으로 주도적으로 실행하며, 데이터로 성과를 증명하는 성과중심 조직입니다.</p>
-                </div>
-                 <div class="bg-white p-8 rounded-lg border border-yellow-200/80">
-                    <h3 class="text-2xl font-bold mb-3">🏛️ 펑션팀: 전문성의 기준점</h3>
-                    <p class="text-stone-600">품질, 안정성, 기술적 탁월함을 책임지는 전문가 그룹으로서, 모든 스쿼드가 최고의 퍼포먼스를 낼 수 있도록 돕습니다.</p>
-                </div>
-                 <div class="bg-white p-8 rounded-lg border border-yellow-200/80">
-                    <h3 class="text-2xl font-bold mb-3">🚦 전시OPS: 전사전략 실행의 컨트롤타워</h3>
-                    <p class="text-stone-600">모든 전시 요청을 체계적으로 관리하고, 펑션팀과 협업하여 전사 전략의 실행력을 높이는 역할을 합니다.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 5: Closing -->
-        <section id="slide-5" class="fade-in-section text-center py-24 px-6 bg-stone-800 text-white">
-             <div class="container mx-auto max-w-5xl">
-                <p class="font-serif-like text-xl opacity-80 mb-2">마지막으로</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">변화는 항상 낯설기 마련입니다.</h2>
-                <p class="text-lg opacity-90 mb-10">
-                    이 변화가 처음에는 낯설고 도전적으로 느껴질 수 있습니다.<br>하지만 각자의 위치에서 최고의 전문성으로 목표를 향해 달려갈 때 상상 이상의 시너지가 나타나기 시작 할 것입니다.<br>
-                    우리의 새로운 도전을 다 함께 응원해주시기 바랍니다.
-                </p>
-                 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="bg-yellow-500 hover:bg-yellow-400 text-stone-900 font-bold py-3 px-8 rounded-full transition-colors duration-300">
-                    다시 처음으로
-                </button>
-            </div>
-        </section>
-    </main>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                threshold: 0.15
-            });
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            const navLinks = document.querySelectorAll('nav a');
-            const allSections = document.querySelectorAll('main section');
-            const mainHeader = document.getElementById('main-header');
-            const headerHeight = mainHeader.offsetHeight;
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            const scrollObserver = new IntersectionObserver((entries) => {
-                let currentSectionId = '';
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        currentSectionId = entry.target.id;
-                    }
-                });
-
-                if (currentSectionId) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === '#' + currentSectionId);
-                    });
-                }
-            }, { 
-                rootMargin: `-${headerHeight}px 0px -50% 0px`,
-                threshold: 0.1
-            });
-            
-            allSections.forEach(section => {
-                if (section.id) scrollObserver.observe(section);
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
